@@ -1,0 +1,31 @@
+This is NOT a generic tool for Mac fan control. It will limit the fan
+maximum speed, which may cause overheating, crashes or damage to the
+computer.
+ 
+This is a special tool for certain old Mac Minis (~2008) that have a
+noisy fan after memory upgrade. See for example this:
+http://nanchatte.wordpress.com/2009/04/20/solution-to-the-noisy-fans-on-a-core-2-duo-intel-mac-mini/
+Tool will limit the maximum speed according to cpu temperature. The
+limiting is done in steps with some hysteresis to avoid countinuous
+adjusting. Temperature limits are hardcoded in code.
+
+Code is based on smcFanControl (http://www.eidac.de/).
+See README.smc for original README.
+
+Install
+=======
+
+ * Test the tool
+    sudo ./fantune 
+      Set Speed: 2000 (0) Temp: 55 (0) Class: 1
+        F0Mx  [fpe2]  1800 (bytes 1c 20)
+        F0Mx  [fpe2]  2000 (bytes 1f 40)
+
+ * Copy the tool to /usr/local/bin
+    sudo cp fantune /usr/local/bin
+
+ * Copy launchd configuration
+    sudo cp dungeon.fantune.plist /Library/LaunchDaemons/
+
+ * Start (or reboot)
+    launchctl start dungeon.fantune
